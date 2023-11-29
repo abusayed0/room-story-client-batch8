@@ -6,10 +6,28 @@ import {
     Typography,
 } from "@material-tailwind/react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
+import axios from "axios";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
+
     const [isTermConAccepted, setIsTermConAccepted] = useState(false);
+
+    const { createUser, updateUserProfile } = useAuth();
+    const navigate = useNavigate();
+
+    // Steps : 
+    // 1. create user account 
+    // 2. if account created successfully, upload image.
+    // 3. if upload successfully update user profie.
+    // 4. DONE: if profile update successfully create user entery in the database.
+    // 5 at last navigate user to home page 
+
+
+    // console.log(import.meta.env.VITE_IMGBB_CLIENT_API_KEY, "api");
     const handleSignUp = e => {
         e.preventDefault();
         console.log("abu please do it");
@@ -17,23 +35,81 @@ const SignUp = () => {
         const name = form.name.value;
         const email = form.email.value;
         const photoData = form.photo.files[0];
+        const role = form.role.value;
+        console.log(role === "hr");
         const password = form.password.value;
         const designation = form.designation.value;
         const account = form.account.value;
         const salary = form.salary.value;
-        const userInfo = {
-            name,
-            email,
-            photoData,
-            password,
-            designation,
-            account,
-            salary
-        }
-        console.log(userInfo);
+
+
+        // 1. create user account 
+        createUser(email, password)
+            .then(userCredential => {
+                const user = userCredential.user;
+                console.log("create user", user);
+
+
+                // 2. if account created successfully, upload image.
+                const imageFile = {
+                    image: photoData
+                }
+                axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_CLIENT_API_KEY}`, imageFile, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+                    .then(res => {
+                        if (res.data.success) {
+                            // 3. if upload successfully update user profie.
+                            console.log("image uploaded successfully.");
+                            const imgUrl = res.data.data.display_url;
+
+                            updateUserProfile(name, imgUrl)
+                                .then(() => {
+                                    console.log("user profile updated successfully!");
+                                    const userInfo = {
+                                        name,
+                                        email,
+                                        imgUrl,
+                                        password,
+                                        designation,
+                                        account,
+                                        salary,
+                                        isVerified: role === "hr"
+                                    };
+                                    console.log(userInfo);
+                                    // 4. DONE: if profile update successfully create user entery in the database.
+                                    useAxiosPublic.post("/users", userInfo)
+                                    .then(res => {
+                                        console.log("user entry response : ", res.data);
+                                        if(res.data.insertedId){
+                                            console.log("user created successfull");
+                                            toast.success("User created successfully!");
+                                            // 5 at last navigate user to home page 
+                                            navigate("/");
+                                        }
+                                    })
+
+                                })
+                                .catch(error => {
+                                    const errorMessage = error.message;
+                                    console.error("user profile update error", errorMessage);
+                                })
+
+                        }
+
+                    })
+
+            })
+            .catch(error => {
+                const errorMessage = error.message;
+                console.error("user account creating error", errorMessage);
+            })
+
 
     };
-    console.log(isTermConAccepted);
+    // console.log(isTermConAccepted);
     return (
         <Card color="transparent" shadow={false} className="my-24 w-full md:w-2/3 mx-auto">
             <Typography variant="h4" color="blue-gray">

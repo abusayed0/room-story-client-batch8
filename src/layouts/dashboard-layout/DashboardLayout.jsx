@@ -6,6 +6,7 @@ import NavigaionBar from "../../shared-components/navigation-bar/NavigationBar";
 import { useEffect } from "react";
 
 const DashboardLayout = () => {
+    // TODO: load user role from backend 
     const userRole = "hr";
     const navigate = useNavigate();
     const location = useLocation();

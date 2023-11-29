@@ -15,7 +15,7 @@ const DrawerNavbar = () => {
     const [open, setOpen] = useState(false);
     const openDrawer = () => setOpen(true);
     const closeDrawer = () => setOpen(false);
-
+    // TODO: load user role from backend 
     const userRole = "hr";
     const navList = (
         <>

@@ -5,9 +5,27 @@ import {
     Typography,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
+import toast from "react-hot-toast";
 const LogIn = () => {
+    const {loginUser} = useAuth();
     const handleLogIn = e => {
         e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        // console.log(email, password);
+        // login user 
+        loginUser(email, password)
+        .then(userCredential => {
+            const user = userCredential.user;
+            console.log("logged user :", user);
+            toast.success("Login successfull!");
+        })
+        .catch(error => {
+            const errorMessage = error.message;
+            console.error("login error :", errorMessage);
+        })
     };
     return (
         <Card color="transparent" shadow={false} className="my-24 w-full md:w-1/3 mx-auto">

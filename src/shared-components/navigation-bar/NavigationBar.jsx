@@ -20,8 +20,8 @@ const NavigaionBar = () => {
    
     const [openNav, setOpenNav] = useState(false);
     // const userRole = "hr";
-    const user = useAuth();
-    console.log({user});
+    const {user, logOut} = useAuth();
+    // console.log(user);
     const navigate = useNavigate();
     useEffect(() => {
         window.addEventListener(
@@ -29,6 +29,18 @@ const NavigaionBar = () => {
             () => window.innerWidth >= 768 && setOpenNav(false),
         );
     }, []);
+
+    const handleLogOut = () => {
+        logOut()
+        .then(() => {
+            console.log("log out successfull");
+        })
+        .catch(error => {
+            const errorMessage = error.message;
+            console.error(errorMessage);
+        })
+    };
+
     const navList = (
         <ul className="mt-2 mb-4 flex flex-col gap-2 md:mb-0 md:mt-0 md:flex-row md:items-center md:gap-6">
             <Typography
@@ -83,9 +95,9 @@ const NavigaionBar = () => {
                                         <MenuHandler>
                                             <Avatar
                                                 variant="circular"
-                                                alt="tania andrew"
+                                                alt=""
                                                 className="cursor-pointer"
-                                                src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+                                                src={user.photoURL}
                                             />
                                         </MenuHandler>
                                         <MenuList>
@@ -105,7 +117,7 @@ const NavigaionBar = () => {
                                                         fill="#90A4AE"
                                                     />
                                                 </svg>
-                                                <Typography variant="small" className="font-medium">
+                                                <Typography onClick={handleLogOut} variant="small" className="font-medium">
                                                     Sign Out
                                                 </Typography>
                                             </MenuItem>
@@ -182,9 +194,9 @@ const NavigaionBar = () => {
                                 <MenuHandler>
                                     <Avatar
                                         variant="circular"
-                                        alt="tania andrew"
+                                        alt=""
                                         className="cursor-pointer"
-                                        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+                                        src={user.photoURL}
                                     />
                                 </MenuHandler>
                                 <MenuList>
