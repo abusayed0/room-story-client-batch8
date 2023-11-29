@@ -1,19 +1,18 @@
-import ReactDatePicker from "react-datepicker";
 import Slider from "../slider/Slider";
-import { useState } from "react";
+import Faq from "../faq/Faq";
+import Testimonials from "../testimonial/Testimonials";
+import Services from "../services/Services";
+import Blogs from "../blogs/Blogs";
 
 const Home = () => {
-    const [startDate, setStartDate] = useState();
 
     return (
         <div>
             <Slider />
-            <ReactDatePicker
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
-                dateFormat="MM/yyyy"
-                showMonthYearPicker
-            />
+            <Services/>
+            <Testimonials/>
+            <Blogs/>
+            <Faq/>
         </div>
     );
 };
