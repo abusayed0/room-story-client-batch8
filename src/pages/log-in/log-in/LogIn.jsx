@@ -4,11 +4,16 @@ import {
     Button,
     Typography,
 } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import toast from "react-hot-toast";
 const LogIn = () => {
     const {loginUser} = useAuth();
+    const location = useLocation();
+    console.log("inside log in page", location);
+    const from = location.state?.from || "/";
+    // console.log(from);
+    const navigate = useNavigate();
     const handleLogIn = e => {
         e.preventDefault();
         const form = e.target;
@@ -21,12 +26,14 @@ const LogIn = () => {
             const user = userCredential.user;
             console.log("logged user :", user);
             toast.success("Login successfull!");
+            navigate(from, {replace: true});
         })
         .catch(error => {
             const errorMessage = error.message;
             console.error("login error :", errorMessage);
         })
     };
+    
     return (
         <Card color="transparent" shadow={false} className="my-24 w-full md:w-1/3 mx-auto">
             <Typography variant="h4" color="blue-gray">

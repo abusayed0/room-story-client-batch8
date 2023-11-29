@@ -9,14 +9,15 @@ import {
 import { useState } from "react";
 import { FaAlignLeft } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import useUserRole from "../../hooks/useUserRole";
 
 
 const DrawerNavbar = () => {
     const [open, setOpen] = useState(false);
     const openDrawer = () => setOpen(true);
     const closeDrawer = () => setOpen(false);
-    // TODO: load user role from backend 
-    const userRole = "hr";
+    // DONE: load user role from backend 
+    const { userRole } = useUserRole();
     const navList = (
         <>
             {
@@ -66,7 +67,7 @@ const DrawerNavbar = () => {
     );
     return (
         <div>
-            <Button size="sm" variant="outlined" onClick={openDrawer}><FaAlignLeft className="text-2xl" /></Button>
+            <Button size="sm" variant="outlined" onClick={openDrawer} className="mt-10"><FaAlignLeft className="text-2xl" /></Button>
             <Drawer open={open} onClose={closeDrawer}>
                 <div className="mb-2 flex items-center justify-between p-4">
                     <IconButton variant="text" color="blue-gray" onClick={closeDrawer}>

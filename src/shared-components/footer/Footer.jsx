@@ -21,7 +21,7 @@ const Footer = () => {
 
     return (
         
-            <footer className="relative w-full bg-[#ECE3CE]">
+            <footer className="mt-28 relative w-full bg-[#ECE3CE]">
                 <div className="mx-auto w-full px-4 py-2 md:py-4  md:px-8">
                     <div className="grid grid-cols-1 justify-between gap-4 md:grid-cols-2">
                         <Typography variant="h5" className="mb-6">

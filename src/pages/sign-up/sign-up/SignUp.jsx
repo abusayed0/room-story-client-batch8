@@ -36,7 +36,6 @@ const SignUp = () => {
         const email = form.email.value;
         const photoData = form.photo.files[0];
         const role = form.role.value;
-        console.log(role === "hr");
         const password = form.password.value;
         const designation = form.designation.value;
         const account = form.account.value;
@@ -72,11 +71,11 @@ const SignUp = () => {
                                         name,
                                         email,
                                         imgUrl,
-                                        password,
+                                        role,
                                         designation,
                                         account,
                                         salary,
-                                        isVerified: role === "hr"
+                                        // isVerified: role === "hr"
                                     };
                                     console.log(userInfo);
                                     // 4. DONE: if profile update successfully create user entery in the database.

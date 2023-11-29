@@ -11,61 +11,67 @@ import WorkSheet from "../pages/dashboard/work-sheet/work-sheet/WorkSheet";
 import DashboardLayout from "../layouts/dashboard-layout/DashboardLayout";
 import PaymentHistory from "../pages/dashboard/payment-history/payment-history/PaymentHistory";
 import Progress from '../pages/dashboard/progress/progress/Progress';
+import AuthRequired from "../protected-routes/auth-requrired/AuthRequired";
+import EmployeeRoute from "../protected-routes/employee-route/EmployeeRoute";
+import AdminRoute from "../protected-routes/admin-route/AdminRoute";
+import HrRoute from "../protected-routes/hr-route/HrRoute";
 const Routes = createBrowserRouter([
     {
         path: "/",
-        element: <MainLayout/>,
+        element: <MainLayout />,
         children: [
             {
                 path: "/",
-                element: <Home/>
+                element: <Home />
             },
             {
                 path: "/contact-us",
-                element: <ContactUs/>
+                element: <ContactUs />
             },
             {
                 path: "/sign-up",
-                element: <SignUp/>
+                element: <SignUp />
             },
             {
                 path: "/log-in",
-                element: <LogIn/>
-            }, 
+                element: <LogIn />
+            },
         ],
-        
+
     },
     {
         path: "/dashboard",
-        element: <DashboardLayout/>,
+        element: <AuthRequired><DashboardLayout /></AuthRequired>,
         children: [
-             // user dashboard 
-             {
+            // TODO: why children is array thought passing element
+            // user dashboard 
+            {
                 path: "/dashboard/payment-history",
-                element: <PaymentHistory/>
+                element: <EmployeeRoute><PaymentHistory /></EmployeeRoute>
             },
             {
                 path: "/dashboard/work-sheet",
-                element: <WorkSheet/>
+                element: <EmployeeRoute><WorkSheet /></EmployeeRoute>
+                // element: <WorkSheet/>
             },
-            
+
             // HR dashboard 
             {
                 path: "/dashboard/employee-list",
-                element: <EmployeeList/>
+                element: <HrRoute><EmployeeList /></HrRoute>
             },
             {
                 path: "/dashboard/progress",
-                element: <Progress/>
+                element: <HrRoute><Progress /></HrRoute>
             },
             {
                 path: "/dashboard/users/:email",
-                element: <UserDetails/>
+                element: <HrRoute><UserDetails /></HrRoute>
             },
             // admin dashboard
             {
                 path: "/dashboard/all-employee-list",
-                element: <AllEmployeeList/>
+                element: <AdminRoute><AllEmployeeList /></AdminRoute>
             },
         ]
     }

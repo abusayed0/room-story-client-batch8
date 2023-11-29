@@ -1,32 +1,38 @@
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate} from "react-router-dom";
 // import DashboardNavigationBar from "../../shared-components/dashboard-navigation-bar/DashboardNavigationBar";
 import Footer from "../../shared-components/footer/Footer";
 import DrawerNavbar from "../../shared-components/drawer-navbar/DrawerNavbar";
 import NavigaionBar from "../../shared-components/navigation-bar/NavigationBar";
 import { useEffect } from "react";
+import useUserRole from "../../hooks/useUserRole";
+
 
 const DashboardLayout = () => {
-    // TODO: load user role from backend 
-    const userRole = "hr";
-    const navigate = useNavigate();
-    const location = useLocation();
-    useEffect(() => {
 
-        if (location.pathname === "/dashboard") {
-            if (userRole === "employee") {
-
-                return navigate("/dashboard/work-sheet");
+    // TODO: could navigate user depend on his role 
+    // DONE: load user role from backend /* 
+        const {userRole} = useUserRole();
+        // console.log({userRole});
+        const navigate = useNavigate();
+        const location = useLocation();
+        useEffect(() => {
+            // console.log("runned");
+            // console.log(userRole, isUserRoleLoading);
+            if (location.pathname === "/dashboard") {
+                if (userRole === "employee") {
+    
+                    return navigate("/dashboard/work-sheet");
+                }
+                if (userRole === "hr") {
+                    return navigate("/dashboard/employee-list");
+                }
+    
+                if (userRole === "admin") {
+                    return navigate("/dashboard/all-employee-list");
+                }
             }
-            if (userRole === "hr") {
-                return navigate("/dashboard/employee-list");
-            }
-
-            if (userRole === "admin") {
-                return navigate("/dashboard/all-employee-list");
-            }
-        }
-
-    }, [navigate, location.pathname]);
+    
+        }, [navigate, location.pathname, userRole]); 
     return (
         <div>
             <NavigaionBar />

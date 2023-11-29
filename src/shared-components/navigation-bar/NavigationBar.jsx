@@ -19,7 +19,7 @@ import useAuth from '../../hooks/useAuth';
 const NavigaionBar = () => {
    
     const [openNav, setOpenNav] = useState(false);
-    // const userRole = "hr";
+  
     const {user, logOut} = useAuth();
     // console.log(user);
     const navigate = useNavigate();
