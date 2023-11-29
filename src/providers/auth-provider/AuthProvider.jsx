@@ -2,6 +2,7 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 import { createContext, useEffect, useState } from "react";
 import auth from "../../firebase/intailize-firebase-authentication";
 import PropTypes from 'prop-types';
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
@@ -33,7 +34,26 @@ const AuthProvider = ({ children }) => {
         const unSubsribe = onAuthStateChanged(auth, currentUser => {
             console.log("current user inside observer :", currentUser);
             setUser(currentUser);
-            setIsUserLoading(false);
+            // if current user exist request for token 
+            if(currentUser){
+                const userInfo = {email: currentUser.email};
+                useAxiosPublic.post("/jwt", userInfo)
+                .then(res => {
+                    console.log("token response :", res.data);
+                    if(res.data.token){
+                        localStorage.setItem("access-token", res.data.token);
+                        // setIsUserLoading(false);
+                    }
+                })
+                .finally(() => {
+                    setIsUserLoading(false);
+                })
+            }
+            else{
+                localStorage.removeItem("access-token");
+                setIsUserLoading(false);
+            }
+            
         })
 
         return () => {

@@ -43,7 +43,7 @@ const Routes = createBrowserRouter([
         path: "/dashboard",
         element: <AuthRequired><DashboardLayout /></AuthRequired>,
         children: [
-            // TODO: why children is array thought passing element
+            // Solved: why children is array thought passing element
             // user dashboard 
             {
                 path: "/dashboard/payment-history",

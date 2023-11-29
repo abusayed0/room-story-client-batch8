@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const EmployeeRoute = ({children}) => {
     // console.log({children});
     const {userRole, isUserRoleLoading} = useUserRole();
-    console.log("inside employee route role loading",isUserRoleLoading);
+    // console.log("inside employee route role loading",isUserRoleLoading);
     if(isUserRoleLoading){
         return <p>Loading</p>
     }

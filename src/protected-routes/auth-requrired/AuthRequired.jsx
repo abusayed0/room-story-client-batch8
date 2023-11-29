@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const AuthRequired = ({ children }) => {
     const { user, isUserLoading } = useAuth();
     const location = useLocation();
-    console.log("inside auth requred",location);
+    // console.log("inside auth requred",location);
     if (isUserLoading) {
         return <p>Loading</p>
     }

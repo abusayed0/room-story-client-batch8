@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom';
 
 const AdminRoute = ({children}) => {
     const {userRole, isUserRoleLoading} = useUserRole();
-    console.log("inside admin route role loading",isUserRoleLoading);
+    // console.log("inside admin route role loading",isUserRoleLoading);
     if(isUserRoleLoading){
         return <p>Loading</p>
     }

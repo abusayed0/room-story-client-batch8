@@ -7,11 +7,12 @@ const useUserRole = () => {
     const axiosSucure = useAxiosSecure();
     const {data:userRole, isLoading:isUserRoleLoading} = useQuery({
         queryKey: ["userRole", user?.email],
-        enabled: !isUserLoading,
+        enabled: !isUserLoading ,
         queryFn: async() => {
-            // console.log("called");
+            console.log("use user role is called, here is user loading :", isUserLoading, ", token :", localStorage.getItem("access-token"));
+            
             const res = await axiosSucure.get(`/users/role/${user.email}`);
-            console.log("user role inside use user role", res.data);
+            console.log("use user role response", res.data);
             return res.data.role;
         }
     });

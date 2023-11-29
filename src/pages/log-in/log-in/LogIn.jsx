@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 const LogIn = () => {
     const {loginUser} = useAuth();
     const location = useLocation();
-    console.log("inside log in page", location);
+    // console.log("inside log in page", location);
     const from = location.state?.from || "/";
     // console.log(from);
     const navigate = useNavigate();
