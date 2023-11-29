@@ -42,12 +42,18 @@ const AuthProvider = ({ children }) => {
                     console.log("token response :", res.data);
                     if(res.data.token){
                         localStorage.setItem("access-token", res.data.token);
-                        // setIsUserLoading(false);
+                        setIsUserLoading(false);
                     }
                 })
-                .finally(() => {
-                    setIsUserLoading(false);
+                .catch(error => {
+                    console.log("token reqeusest erro", error.response.status);
+                    if(error.response.status === 403){
+                        logOut();
+                    }
                 })
+                // .finally(() => {
+                //     setIsUserLoading(false);
+                // })
             }
             else{
                 localStorage.removeItem("access-token");

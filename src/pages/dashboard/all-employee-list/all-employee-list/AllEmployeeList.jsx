@@ -8,11 +8,14 @@ import { useState } from "react";
 
 
 
+
 const AllEmployeeList = () => {
+   
     const axiosSucure = useAxiosSecure();
     const [layout, setLayout] = useState("table");
     const { data: allEmployee = [], refetch } = useQuery({
         queryKey: ["allEmployee"],
+
         queryFn: async () => {
             const res = await axiosSucure.get("all-employee-list");
             return res.data;

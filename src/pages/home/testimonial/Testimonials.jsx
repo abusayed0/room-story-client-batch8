@@ -5,7 +5,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { register } from 'swiper/element/bundle';
-import { FaStar, FaRegStarHalfStroke, FaRegStar } from "react-icons/fa6"
 
 register();
 
@@ -34,10 +33,6 @@ const Testimonials = () => {
                 breakpoints={{
                     768: {
                         slidesPerView: 2,
-                        spaceBetween: 30,
-                    },
-                    1024: {
-                        slidesPerView: 3,
                         spaceBetween: 30,
                     },
                 }}

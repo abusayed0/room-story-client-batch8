@@ -102,7 +102,7 @@ const NavigaionBar = () => {
                                         </MenuHandler>
                                         <MenuList>
 
-                                            <MenuItem className="flex items-center gap-2 ">
+                                            <MenuItem onClick={handleLogOut}  className="flex items-center gap-2 ">
                                                 <svg
                                                     width="16"
                                                     height="14"
@@ -117,7 +117,7 @@ const NavigaionBar = () => {
                                                         fill="#90A4AE"
                                                     />
                                                 </svg>
-                                                <Typography onClick={handleLogOut} variant="small" className="font-medium">
+                                                <Typography variant="small" className="font-medium">
                                                     Sign Out
                                                 </Typography>
                                             </MenuItem>

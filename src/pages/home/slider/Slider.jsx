@@ -10,7 +10,7 @@ const Slider = () => {
         <div className="h-[400px] md:h-[700px]">
 
             <AutoplaySlider
-                // play={true}
+                play={true}
                 cancelOnInteraction={false} // should stop playing on user interaction
                 interval={4000}
                 animation="cubeAnimation"
