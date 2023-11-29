@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useState } from 'react';
+import logo from '/logo.png';
 import {
     Navbar,
     // MobileNav,
@@ -12,12 +13,15 @@ import {
     MenuItem,
     Avatar,
 } from "@material-tailwind/react";
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate} from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 const NavigaionBar = () => {
+   
     const [openNav, setOpenNav] = useState(false);
-    const userRole = "user";
-    const user = { name: "josim" };
+    // const userRole = "hr";
+    const user = useAuth();
+    console.log({user});
     const navigate = useNavigate();
     useEffect(() => {
         window.addEventListener(
@@ -35,32 +39,18 @@ const NavigaionBar = () => {
             >
                 <NavLink to="/" className="flex items-center">Home</NavLink>
             </Typography>
-            {
-                user &&
+            
                 <Typography
                     as="li"
                     variant="small"
                     color="blue-gray"
                     className="p-1 font-normal"
                 >
-                    {
-                        userRole === "user"
-                        &&
-                        <NavLink to="/dashboard/work-sheet" className="flex items-center">Dashboard</NavLink>
-                    }
-                    {
-                        userRole === "hr"
-                        &&
-                        <NavLink to="/dashboard/employee-list" className="flex items-center">Dashboard</NavLink>
-                    }
-                    {
-                        userRole === "admin"
-                        &&
-                        <NavLink to="/dashboard/all-employee-list" className="flex items-center">Dashboard</NavLink>
-                    }
+                    
+                        <NavLink to="/dashboard" className="flex items-center">Dashboard</NavLink>
+                    
 
                 </Typography>
-            }
             <Typography
                 as="li"
                 variant="small"
@@ -74,15 +64,12 @@ const NavigaionBar = () => {
     );
     return (
         <>
-            <Navbar className="bg-[#ECE3CE] sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 md:px-8 md:py-4">
+            <Navbar className="z-20 bg-[#ECE3CE] sticky top-0 h-max max-w-full rounded-none px-4 py-2 md:px-8 md:py-4">
                 <div className="flex items-center justify-between text-blue-gray-900">
-                    <Typography
-                        as="a"
-                        href="#"
-                        className="mr-4 cursor-pointer py-1.5 font-medium text-xl"
+                    <div className="mr-4 cursor-pointer py-1.5 font-medium"
                     >
-                        Material Tailwind
-                    </Typography>
+                        <img className="h-12" src={logo} alt="" />
+                    </div>
 
                     {/* tablet and desktop nav item  */}
                     <div className="flex items-center gap-4">

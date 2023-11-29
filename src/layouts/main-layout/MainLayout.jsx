@@ -5,9 +5,11 @@ import Footer from "../../shared-components/footer/Footer";
 const MainLayout = () => {
     return (
         <div>
-            <NavigaionBar/>
-            <Outlet/>
-            <Footer/>
+            <NavigaionBar />
+            <div className="max-w-[1320px] mx-auto px-4 md:px-8">
+                <Outlet />
+            </div>
+            <Footer />
 
         </div>
     );

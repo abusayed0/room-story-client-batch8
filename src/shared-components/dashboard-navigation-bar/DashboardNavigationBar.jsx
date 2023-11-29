@@ -37,7 +37,7 @@ const DashboardNavigationBar = () => {
                 <NavLink to="/" className="flex items-center">Home</NavLink>
             </Typography>
             {
-                userRole === "user"
+                userRole === "employee"
                 &&
                 <>
                     <Typography
