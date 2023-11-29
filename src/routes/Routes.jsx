@@ -9,12 +9,12 @@ import AllEmployeeList from "../pages/dashboard/all-employee-list/all-employee-l
 import WorkSheet from "../pages/dashboard/work-sheet/work-sheet/WorkSheet";
 import DashboardLayout from "../layouts/dashboard-layout/DashboardLayout";
 import PaymentHistory from "../pages/dashboard/payment-history/payment-history/PaymentHistory";
-import Progress from '../pages/dashboard/progress/progress/Progress';
 import AuthRequired from "../protected-routes/auth-requrired/AuthRequired";
 import EmployeeRoute from "../protected-routes/employee-route/EmployeeRoute";
 import AdminRoute from "../protected-routes/admin-route/AdminRoute";
 import HrRoute from "../protected-routes/hr-route/HrRoute";
 import EmployeeDetail from "../pages/dashboard/employee-details/EmployeeDetail";
+import Progress from "../pages/dashboard/progress/progress/Progress";
 const Routes = createBrowserRouter([
     {
         path: "/",
