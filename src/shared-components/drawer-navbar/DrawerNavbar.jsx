@@ -11,7 +11,6 @@ import { FaAlignLeft } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import useUserRole from "../../hooks/useUserRole";
 
-
 const DrawerNavbar = () => {
     const [open, setOpen] = useState(false);
     const openDrawer = () => setOpen(true);
@@ -24,11 +23,13 @@ const DrawerNavbar = () => {
                 userRole === "employee"
                 &&
                 <>
-                    <ListItem onClick={closeDrawer}
-                    >
-                        <NavLink to="/dashboard/work-sheet" className="flex items-center">Work Sheet</NavLink>
+                    <NavLink onClick={closeDrawer} to="/dashboard/work-sheet">
+                        <ListItem
+                        >
+                            Work Sheet
+                        </ListItem>
+                    </NavLink>
 
-                    </ListItem>
                     <ListItem onClick={closeDrawer}
                     >
                         <NavLink to="/dashboard/payment-history" className="flex items-center">Payment History</NavLink>
@@ -40,26 +41,33 @@ const DrawerNavbar = () => {
                 userRole === "hr"
                 &&
                 <>
-                    <ListItem onClick={closeDrawer}>
-                        <NavLink to="/dashboard/employee-list" className="flex items-center">Employee List</NavLink>
-                    </ListItem>
+                    <NavLink onClick={closeDrawer} to="/dashboard/employee-list">
+                        <ListItem>
+                            Employee List
+                        </ListItem>
+                    </NavLink>
 
-                    <ListItem onClick={closeDrawer}
-                    >
-                        <NavLink to="/dashboard/progress" className="flex items-center">Progress</NavLink>
 
-                    </ListItem>
+                    <NavLink onClick={closeDrawer} to="/dashboard/progress">
+                        <ListItem
+                        >
+                            Progress
+                        </ListItem>
+                    </NavLink>
+
                 </>
             }
             {
                 userRole === "admin"
                 &&
                 <>
-                    <ListItem onClick={closeDrawer}
-                    >
-                        <NavLink to="/dashboard/all-employee-list" className="flex items-center">All Employee List</NavLink>
 
-                    </ListItem>
+                    <NavLink onClick={closeDrawer} to="/dashboard/all-employee-list">
+                        <ListItem
+                        >
+                            All Employee List
+                        </ListItem>
+                    </NavLink>
                 </>
             }
 

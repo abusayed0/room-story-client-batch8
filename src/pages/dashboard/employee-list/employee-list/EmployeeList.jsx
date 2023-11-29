@@ -5,10 +5,18 @@ import { Button, Card, Typography } from "@material-tailwind/react";
 import { FaCheck, FaXmark } from "react-icons/fa6";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import PaymentModal from "../payment-modal/PaymentModal";
 
 const EmployeeList = () => {
     const { user } = useAuth();
     const axiosSucure = useAxiosSecure();
+    const navigate = useNavigate();
+    const [openModal, setOpenModal] = useState(false);
+    const handleOpenModal = () => setOpenModal((cur) => !cur);
+
+
     const { data: emloyeeList = [], refetch } = useQuery({
         queryKey: ["employeeList", user.email],
         queryFn: async () => {
@@ -56,6 +64,14 @@ const EmployeeList = () => {
         });
 
     };
+const [modalData, setModalData] = useState({});
+    const handlePay = (userInfo) => {
+        // console.log(userInfo);
+        setModalData(userInfo);
+        handleOpenModal();
+    };
+
+
 
     return (
         <div className="mt-28">
@@ -81,6 +97,12 @@ const EmployeeList = () => {
                     </thead>
                     <tbody>
                         {TABLE_ROWS.map(({ _id, name, email, isVerified, account, salary }, index) => {
+                            const userInfo = {
+                                _id,
+                                email,
+                                account,
+                                salary
+                            }
                             const isLast = index === TABLE_ROWS.length - 1;
                             const classes = isLast ? "p-4" : "p-4 border-b border-blue-gray-50";
 
@@ -130,26 +152,17 @@ const EmployeeList = () => {
                                             color="blue-gray"
                                             className="font-normal"
                                         >
-                                            {salary}
+                                            ${salary}
                                         </Typography>
                                     </td>
                                     <td className={classes}>
-                                        <Typography
-                                            variant="small"
-                                            color="blue-gray"
-                                            className="font-normal"
-                                        >
-                                            Pay
-                                        </Typography>
+
+                                        <Button onClick={() => handlePay(userInfo)} disabled={!isVerified}>Pay</Button>
                                     </td>
                                     <td className={classes}>
-                                        <Typography
-                                            variant="small"
-                                            color="blue-gray"
-                                            className="font-normal"
-                                        >
-                                            {_id}
-                                        </Typography>
+
+                                        <Button onClick={() => navigate(`/dashboard/employee-list/${_id}`)}>Details</Button>
+
                                     </td>
                                 </tr>
                             );
@@ -157,6 +170,7 @@ const EmployeeList = () => {
                     </tbody>
                 </table>
             </Card>
+            <PaymentModal openModal={openModal} handleOpenModal={handleOpenModal} userInfo={modalData} />
         </div>
     );
 };

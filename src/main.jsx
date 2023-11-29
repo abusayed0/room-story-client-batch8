@@ -19,6 +19,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <ThemeProvider>
             <App />
             <Toaster
+           
               position="top-right"
               reverseOrder={false}
             />
