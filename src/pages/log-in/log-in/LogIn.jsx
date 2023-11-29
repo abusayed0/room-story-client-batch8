@@ -31,6 +31,7 @@ const LogIn = () => {
         .catch(error => {
             const errorMessage = error.message;
             console.error("login error :", errorMessage);
+            toast.error(errorMessage);
         })
     };
     

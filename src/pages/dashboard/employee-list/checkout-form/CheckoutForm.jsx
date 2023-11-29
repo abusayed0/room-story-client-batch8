@@ -20,7 +20,7 @@ const CheckoutForm = ({ userInfoWithDate, handleOpenModal }) => {
     useEffect(() => {
         axiosSucure.post("/create-payment-intent", { salary: salary })
             .then(res => {
-                console.log(res.data.clientSecret);
+                console.log("create intent res",res.data.clientSecret);
                 setClientSecret(res.data.clientSecret)
             })
 

@@ -37,6 +37,9 @@ const SignUp = () => {
         const photoData = form.photo.files[0];
         const role = form.role.value;
         const password = form.password.value;
+        if(!/(?=.*[A-Z])(?=.*[!@#$&*%^]).{6}/.test(password)){
+            return toast.error("Password should contain atlease 6 character, uppercase and special character.");
+        }
         const designation = form.designation.value;
         const account = form.account.value;
         const salary = form.salary.value;
@@ -93,6 +96,7 @@ const SignUp = () => {
                                 })
                                 .catch(error => {
                                     const errorMessage = error.message;
+                                    toast.error(errorMessage);
                                     console.error("user profile update error", errorMessage);
                                 })
 
@@ -103,6 +107,7 @@ const SignUp = () => {
             })
             .catch(error => {
                 const errorMessage = error.message;
+                toast.error(errorMessage);
                 console.error("user account creating error", errorMessage);
             })
 
