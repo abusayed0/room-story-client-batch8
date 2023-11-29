@@ -75,7 +75,7 @@ const SignUp = () => {
                                         designation,
                                         account,
                                         salary,
-                                        // isVerified: role === "hr"
+                                        isVerified: role === "hr"
                                     };
                                     console.log(userInfo);
                                     // 4. DONE: if profile update successfully create user entery in the database.
