@@ -201,7 +201,7 @@ const NavigaionBar = () => {
                                 </MenuHandler>
                                 <MenuList>
 
-                                    <MenuItem className="flex items-center gap-2 ">
+                                    <MenuItem onClick={handleLogOut} className="flex items-center gap-2 ">
                                         <svg
                                             width="16"
                                             height="14"

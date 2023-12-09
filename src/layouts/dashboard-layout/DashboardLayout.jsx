@@ -36,7 +36,7 @@ const DashboardLayout = () => {
             <NavigaionBar />
             <div className="max-w-[1320px] mx-auto px-4 md:px-8">
                 <DrawerNavbar />
-                <h3 className="text-center text-3xl font-semibold">Wellcome to dashboar !!!</h3>
+                <h3 className="text-center text-3xl font-semibold">Wellcome to dashboard !!!</h3>
                 <Outlet />
             </div>
             <Footer />

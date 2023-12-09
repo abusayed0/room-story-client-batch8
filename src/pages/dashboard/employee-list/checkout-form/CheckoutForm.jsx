@@ -28,7 +28,14 @@ const CheckoutForm = ({ userInfoWithDate, handleOpenModal }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        const searchInfo = {email: userInfoWithDate.email, paymentFor:userInfoWithDate.paymentFor};
+        // const x = true;
+        const isAlreadPaid = await axiosSucure.post(`/payments-status`, 
+        searchInfo);
+        if(isAlreadPaid.data){
+            setError("your already paid for this month.");
+            return;
+        }
         if (!stripe || !elements) {
             return;
         }

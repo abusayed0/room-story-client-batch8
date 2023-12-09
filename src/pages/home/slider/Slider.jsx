@@ -7,7 +7,7 @@ const AutoplaySlider = withAutoplay(AwesomeSlider);
 const Slider = () => {
 
     return (
-        <div className="h-[400px] md:h-[700px]">
+        <div className="">
 
             <AutoplaySlider
                 play={true}
@@ -15,7 +15,7 @@ const Slider = () => {
                 interval={4000}
                 animation="cubeAnimation"
                 bullets={false}
-                className="h-[400px] md:h-[700px]"
+                className=""
             >
                 <div data-src="https://i.ibb.co/165CXLq/armchair-green-living-room-with-copy-space-43614-910.jpg" />
                 <div data-src="https://i.ibb.co/cCMPBNk/3d-rendering-loft-luxury-living-room-with-bookshelf-105762-2099.jpg" />

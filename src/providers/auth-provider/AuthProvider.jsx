@@ -46,7 +46,7 @@ const AuthProvider = ({ children }) => {
                     }
                 })
                 .catch(error => {
-                    console.log("token reqeusest erro", error.response.status);
+                    console.log("token reqeusest erro", error.response?.status);
                     if(error.response.status === 403){
                         logOut();
                     }
