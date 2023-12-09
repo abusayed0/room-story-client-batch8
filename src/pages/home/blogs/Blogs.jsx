@@ -11,7 +11,7 @@ const Blogs = () => {
         <div className="mt-28 grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card
                 shadow={false}
-                className="relative grid h-[30rem] w-full  items-end justify-center overflow-hidden text-center"
+                className="relative grid  w-full  items-end justify-center overflow-hidden text-center"
             >
                 <CardHeader
                     floated={false}
@@ -43,7 +43,7 @@ const Blogs = () => {
             </Card>
             <Card
                 shadow={false}
-                className="relative grid h-[30rem] w-full items-end justify-center overflow-hidden text-center"
+                className="relative grid  w-full items-end justify-center overflow-hidden text-center"
             >
                 <CardHeader
                     floated={false}
