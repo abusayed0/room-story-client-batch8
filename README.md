@@ -1,5 +1,9 @@
 # [Room Story](https://room-story.netlify.app/)
 
+admin email: admin@gmail.com
+
+password: 111111
+
 ## Fetures and fuctionalities :
 * 3 different user role Employee, Hr and Admin.
 * Employee can submit his/her task, see his/her monthly payment history.
